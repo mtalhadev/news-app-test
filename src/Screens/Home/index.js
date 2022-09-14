@@ -82,8 +82,10 @@ const Home = () => {
                             <Text style={globalStyle.title}>{item.title}</Text>
                         </View>
                         <Row>
-                          <Text style={globalStyle.small12}>{item.author}</Text>
-                          <Text style={globalStyle.small12}>{item.publishedAt}</Text>
+                          <View>
+                            <Text numberOfLines={1} style={globalStyle.small12}>{item?.author? `By ${item?.author}`: ""}</Text>
+                          </View>
+                          <Text numberOfLines={1} style={globalStyle.small12}>{item.publishedAt}</Text>
                         </Row>
                     </View>
                 </View>

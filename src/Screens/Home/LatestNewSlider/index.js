@@ -31,7 +31,7 @@ const LatestNewSlider = ({news}) => {
                     <Image source={{uri: item.urlToImage}} style={{width: '100%', height: "100%", position: 'absolute'}} />
                     <View  style={{flex: 1, padding: 10, zIndex: 100}}>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={[globalStyle.title,{fontFamily:fonts.bold}]}>By {item?.author}</Text>
+                            <Text style={[globalStyle.title,{fontFamily:fonts.bold}]}>{item?.author? `By ${item?.author}`: ""}</Text>
                             <Text style={globalStyle.small12}>{item.title}</Text>
                         </View>
                         <Text style={globalStyle.small12}>{"I’m going to say this very bluntly again,” he added. “Buy them only if you’re prepared to lose all your money."}</Text>

@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from '../Screens/Home';
 import Settings from '../Screens/Settings';
+import Splash from '../Screens/Splash';
 
 
 // Context Api
@@ -47,18 +48,18 @@ const AuthNavigator = ()=>(
 const Navigation = () => {
     
     const [isUser, setIsUser] = React.useState(true)
-    
+
     const signIn = () => setIsUser(true);
     const signOut = () => setIsUser(false);
 
+
+
     return (
         <UserContext.Provider value={{}}>
-            {
-                isUser?
-                <MainNavigator/>
-                :
-                <AuthNavigator/>
-            }
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name="splash" component={Splash} />
+                <Stack.Screen name="app" component={isUser?MainNavigator:AuthNavigator} />
+            </Stack.Navigator>
         </UserContext.Provider>
     )
 }

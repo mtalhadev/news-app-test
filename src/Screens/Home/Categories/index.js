@@ -7,7 +7,7 @@ const Categoties = ({activeCat, onPress}) => {
     <ScrollView horizontal showsHorizontalScrollIndicator = {false} style={{marginVertical: 10}}>
         {
             constants.categories.map(cat=>(
-                <Pressable style = {[styles.tab,{backgroundColor: activeCat === cat?colors.primary:"transparent"}]} onPress= {()=>onPress(cat)}>
+                <Pressable key={cat} style = {[styles.tab,{backgroundColor: activeCat === cat?colors.primary:"transparent"}]} onPress= {()=>onPress(cat)}>
                     <Text style={[styles.text,{color: activeCat === cat?colors.white:colors.text}]}>{cat}</Text>
                 </Pressable>
             ))
