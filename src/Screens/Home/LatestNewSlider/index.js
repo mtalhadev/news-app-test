@@ -3,9 +3,10 @@ import React from 'react'
 import Row from '../../../components/Row'
 import Carousel from 'react-native-reanimated-carousel';
 import { colors, constants, fonts, globalStyle } from '../../../theme';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
-const LatestNewSlider = ({news}) => {
+const LatestNewSlider = ({news,onPress}) => {
   return (
     <View style={{marginVertical: 10}}>
       <Row style={{marginHorizontal: 10,marginBottom: 5}}>
@@ -27,15 +28,17 @@ const LatestNewSlider = ({news}) => {
             // onSnapToItem={(index) => console.log('current index:', index)}
             renderItem={({ item }) => (
                 <View style={{ flex: 1, marginLeft: '2.5%', borderRadius: 10, overflow: 'hidden'}}>
-                    <View style={globalStyle.layer}/>
-                    <Image source={{uri: item.urlToImage}} style={{width: '100%', height: "100%", position: 'absolute'}} />
-                    <View  style={{flex: 1, padding: 10, zIndex: 100}}>
-                        <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={[globalStyle.title,{fontFamily:fonts.bold}]}>{item?.author? `By ${item?.author}`: ""}</Text>
-                            <Text style={globalStyle.small12}>{item.title}</Text>
-                        </View>
-                        <Text style={globalStyle.small12}>{"I’m going to say this very bluntly again,” he added. “Buy them only if you’re prepared to lose all your money."}</Text>
-                    </View>
+                  <TouchableOpacity style={{ height: "100%"}} activeOpacity={.9} onPress={()=>onPress(item)}>
+                      <View style={globalStyle.layer}/>
+                      <Image source={{uri: item.urlToImage}} style={{width: '100%', height: "100%", position: 'absolute'}} />
+                      <View  style={{flex: 1, padding: 10, zIndex: 100}}>
+                          <View style={{flex: 1, justifyContent: 'center'}}>
+                              <Text style={[globalStyle.title,{fontFamily:fonts.bold}]}>{item?.author? `By ${item?.author}`: ""}</Text>
+                              <Text style={globalStyle.small12}>{item.title}</Text>
+                          </View>
+                          <Text numberOfLines={2} style={globalStyle.small12}>{item.description}</Text>
+                      </View>
+                  </TouchableOpacity>
                 </View>
             )}
         />

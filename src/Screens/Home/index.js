@@ -16,7 +16,7 @@ import Categoties from './Categories'
 import { getBrekingNews, getNews } from '../../api'
 
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [activeCat, setActiveCat] = useState(constants.categories[0])
   const [news, setNews] = useState([]);
   const [brekingNews, setBrekingNews] = useState([]);
@@ -52,6 +52,10 @@ const Home = () => {
     }
   }
 
+  const goToDetailScreen = (item)=>{
+    navigation.navigate("Detail",{item})
+  }
+
   return (
     <SafeAreaView style={globalStyle.container} edges = {["top"]}>
       <Row>
@@ -62,6 +66,7 @@ const Home = () => {
       </Row>
       <LatestNewSlider
         news = {brekingNews}
+        onPress = {goToDetailScreen}
       />
       <View style={{flex: 1}}>
         <FlatList
@@ -74,7 +79,7 @@ const Home = () => {
           keyExtractor = {(item, index) => `item-${index}`}
           renderItem = {({item})=>{
             return(
-              <View style={{ height: 120, borderRadius: 10, overflow: 'hidden', marginBottom: 10}}>
+              <TouchableOpacity activeOpacity={.9} style={{ height: 120, borderRadius: 10, overflow: 'hidden', marginBottom: 10}} onPress= {()=>goToDetailScreen(item)}>
                     <View style={globalStyle.layer}/>
                     <Image source={{uri: item.urlToImage}} style={{width: '100%', height: "100%", position: 'absolute'}} />
                     <View  style={{flex: 1, padding: 10, zIndex: 100}}>
@@ -85,10 +90,10 @@ const Home = () => {
                           <View style={{flex: 1, marginRight: 10}}>
                             <Text numberOfLines={1} style={globalStyle.small12}>{item?.author? `By ${item?.author}`: ""}</Text>
                           </View>
-                          <Text numberOfLines={1} style={globalStyle.title}>{moment(item.publishedAt).format("dddd, d MMM YYYY")}</Text>
+                          <Text numberOfLines={1} style={globalStyle.title}>{moment(item.publishedAt).format(constants.dateFormate)}</Text>
                         </Row>
                     </View>
-                </View>
+                </TouchableOpacity>
             )
           }}
         />

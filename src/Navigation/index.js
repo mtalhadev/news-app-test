@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../Screens/Home';
 import Settings from '../Screens/Settings';
 import Splash from '../Screens/Splash';
+import Detail from '../Screens/Detail';
 
 
 // Context Api
@@ -26,6 +27,7 @@ const Stack = createNativeStackNavigator();
 const MainNavigator = ()=>(
     <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Detail" component={Detail} />
         <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
 )
