@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import globalStyle from '../../theme/globalStyle'
-
+import moment from 'moment'
 /**
  * Components
  */
@@ -82,10 +82,10 @@ const Home = () => {
                             <Text style={globalStyle.title}>{item.title}</Text>
                         </View>
                         <Row>
-                          <View>
+                          <View style={{flex: 1, marginRight: 10}}>
                             <Text numberOfLines={1} style={globalStyle.small12}>{item?.author? `By ${item?.author}`: ""}</Text>
                           </View>
-                          <Text numberOfLines={1} style={globalStyle.small12}>{item.publishedAt}</Text>
+                          <Text numberOfLines={1} style={globalStyle.title}>{moment(item.publishedAt).format("dddd, d MMM YYYY")}</Text>
                         </Row>
                     </View>
                 </View>
