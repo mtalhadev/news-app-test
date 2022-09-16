@@ -8,13 +8,12 @@ import * as RNLocalize from 'react-native-localize';
 
 import en from './translations/en';
 import fr from './translations/fr';
-import ur from './translations/ur';
 
 const LANGUAGES = {
     en,
     fr,
-    ur
 };
+
 
 const LANG_CODES = Object.keys(LANGUAGES);
 

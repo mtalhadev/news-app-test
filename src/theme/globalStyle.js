@@ -11,7 +11,6 @@ const globalStyle = StyleSheet.create({
     link: {
         fontFamily: fonts.medium,
         fontSize: 14,
-        color: colors.primary,
         textDecorationLine: "underline"
     },
     layer: {

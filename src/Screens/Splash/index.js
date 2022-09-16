@@ -1,14 +1,16 @@
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
-import { colors, globalStyle } from '../../theme'
+import { useTheme } from '@react-navigation/native';
 
 const Splash = ({navigation}) => {
   
   React.useEffect(() => {
     setTimeout(() => {
-        navigation.replace("app")
+        navigation.replace("MainNavigator")
     }, 2000);
   }, [])
+
+  const {colors,dark} = useTheme()
   
   return (
     <View style={{flex: 1, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center'}}>

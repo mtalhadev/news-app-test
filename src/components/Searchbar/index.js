@@ -3,18 +3,24 @@ import React from 'react'
 import { useTranslation } from "react-i18next";
 import Feather from 'react-native-vector-icons/Feather'
 
-import { colors, fonts } from '../../theme'
+import { fonts } from '../../theme'
 import Row from '../Row';
+import { useTheme } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const Searchbar = ({onChangeText}) => {
+const Searchbar = ({onChangeText,text}) => {
     const {t, i18n} = useTranslation()
+    const {colors} = useTheme()
+    const insets = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,{borderColor: colors.gray}]}>
         <Row>
             <TextInput
                 placeholder={t("common:search")}
                 onChangeText = {onChangeText}
-                style={styles.input}
+                placeholderTextColor = {colors.gray}
+                style={[styles.input,{color: colors.gray}]}
+                value = {text}
             />
             <Feather name='search' color={colors.gray} />
         </Row>
@@ -28,16 +34,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         borderWidth: 1,
-        borderColor: colors.lightGray,
         paddingHorizontal: 20,
         borderRadius: 100,
         justifyContent: 'center',
-        paddingVertical: 10
+        alignItems: 'center',
+        // paddingVertical: 5,
+        height: 40,
+        
     },
     input:{
         fontFamily: fonts.medium, 
         fontSize: 12, 
-        color: colors.gray,
-        flex: 1
+        flex: 1,
+        paddingTop: 0,
+        paddingBottom: 0,
     }
 })
